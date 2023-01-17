@@ -49,22 +49,67 @@ If the control input changes to AB = 10, then all the gates are restricted excep
 ### Procedure
 /* write all the steps invloved */
 
+step1: Start the module using module projname().
+
+step2: Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+
+step3: Use wire to assign intermediate outputs.
+
+step4: Use and,or and not gates to get the desired output.
+
+step5: End the module.
+
+step6: Generate RTL realization and timing diagrams.
+
 
 
 ### PROGRAM 
+```
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: SASIRAJKUMAR T J
+RegisterNumber:22005240
 */
+MUTLIPLEXER:
+
+module multiplexer(I0,I1,I2,I3,s0,s1,y);
+input I0,I1,I2,I3,s0,s1;
+output y;
+not(s0c,s0);
+nor(s1c,s1);
+wire p,q,r,s,soc,s1c;
+and(p,s0c,s1c,I0);
+and(q,s0c,s1,I1);
+and(r,s0,s1c,I2);
+and(s,s0,s1,I3);
+or(y,p,q,r,s);
+endmodule
 
 
+DEMULTIPLEXER:
+
+module demux(Y0,Y1,Y2,Y3,S0,S1,I);
+input S0,S1,I;
+output Y0,Y1,Y2,Y3;
+wire S0C,S1C;
+not(S0C,S0);
+not(S1C,S1);
+and(Y0,I,S0C,S1C);
+and(Y1,I,S0C,S1);
+and(Y2,I,S0,S1C);
+and(Y3,I,S0,S1);
+endmodule
+```
 
 
 
 
 ### RTL LOGIC  
+multiplexer:
+![output](MUXRTL.png)
 
+demultiplexer:
+![output](demuxrtl.png)
 
 
 
@@ -73,16 +118,24 @@ RegisterNumber:
 
 
 ### TIMING DIGRAMS  
+multiplexer:
+![output](MUXTIME.png)
 
-
-
+demux:
+![output](demuxtime.png)
 
 
 ### TRUTH TABLE 
+multiplexer:
 
+![output](muxtruth.png)
+
+demux:
+![output](demuxtruth.jpg)
 
 
 
 
 
 ### RESULTS 
+Hence 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.    
